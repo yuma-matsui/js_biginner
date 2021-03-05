@@ -23,5 +23,28 @@
     </div>
     
   </div>
+  <script>
+    //日付切り替わりタイマー
+    function countDown(due){
+      const now = new Date();
+
+      const open = due.getTime() - now.getTime();
+      const sec = Math.floor(open / 1000) % 60;
+      const min = Math.floor(open / 1000 / 60 ) % 60;
+      const hour = Math.floor(open / 1000 / 60 / 60 ) % 24;
+      const day = Math.floor(open / 1000 / 60 / 60 / 24 );
+
+      return `開催まであと${hour}時間${min}分${sec}秒です。`;
+    }
+
+    let goal = new Date();
+    goal.setHours(23);
+    goal.setMinutes(59);
+    goal.setSeconds(59);
+    console.log(goal.getTime());
+
+    console.log(countDown(goal));
+
+  </script>
 </body>
 </html>
