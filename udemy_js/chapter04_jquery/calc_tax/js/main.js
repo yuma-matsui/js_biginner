@@ -1,1 +1,3 @@
-$("#price").val(999);
+$("#btnExec").click(function(){
+	
+});
