@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div id="wrapper" class="show">
+<div id="wrapper" class="">
     <header>
     <div class="container">
         <div class="title-block">
@@ -58,7 +58,7 @@
     </footer>
 </div>
 
-<nav id="nav" class="show">
+<nav id="nav" class="">
     <div class="logo"><img src="logo.svg" alt=""></div>
     <ul>
         <li><a href="#">Home</a></li>
@@ -68,6 +68,15 @@
         <li><a href="#">お問い合わせ</a></li>
     </ul>
 </nav>
+<script src="../../_common/scripts/jquery-3.4.1.min.js"></script>
+<script>
+    'use strict';
 
+    $(document).ready(function(){
+        $('#open_nav').on('click', function(){
+            $('#wrapper, #nav').toggleClass('show');
+        });
+    });
+</script>
 </body>
 </html>
