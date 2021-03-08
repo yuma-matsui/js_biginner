@@ -39,6 +39,10 @@ img {
     height: 16px;
     background: url(images/arrow-right.svg) no-repeat;
 }
+#page {
+    color: white;
+    font-size: 16px;
+}
 </style>
 </head>
 <body>
@@ -58,6 +62,7 @@ img {
         <div class="toolbar">
             <div class="nav">
                 <div id="prev"></div>
+                <div id="page"></div>
                 <div id="next"></div>
             </div>
         </div>
@@ -72,23 +77,47 @@ img {
 </footer>
 <script>
 'use strict';
+    const images = [
+        'images/image1.jpg',
+        'images/image2.jpg',
+        'images/image3.jpg',
+        'images/image4.jpg',
+        'images/image5.jpg'
+    ];
 
-const images = ['images/image1.jpg', 'images/image2.jpg', 'images/image3.jpg', 'images/image4.jpg', 'images/image5.jpg'];
-let current = 0;
+    images.forEach(function(item, index){
+        preloadImage(item);
+    });
 
-function changeImage(num) {
-    if(current + num >= 0 && current + num < images.length) {
-        current += num;
-        document.getElementById('main_image').src = images[current];
+    let current = 0;
+
+    function preloadImage(path){
+        let imgTag = document.createElement('img');
+        imgTag.src = path;
     }
-};
 
-document.getElementById('prev').onclick = function() {
-    changeImage(-1);
-};
-document.getElementById('next').onclick = function() {
-    changeImage(1);
-};
+    function changeImage(num){
+        if(current + num >= 0 && current + num < images.length ){
+            current += num;
+            document.getElementById('main_image').src = images[current];
+            pageNum();
+        }
+    };
+
+    function pageNum(){
+        document.getElementById('page').innerHTML = `${current + 1} / ${images.length}`;
+    }
+
+    pageNum();
+
+    document.getElementById('prev').addEventListener('click', function(){
+        changeImage(-1);
+    });
+
+    // 次へボタンの制御を記述
+    document.getElementById('next').addEventListener('click', function(){
+        changeImage(1); //引数に1を与えることで配列から次画像の値を取得
+    });
 </script>
 </body>
 </html>
